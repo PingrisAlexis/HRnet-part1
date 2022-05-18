@@ -1,0 +1,23 @@
+.header_container {
+  height: 10rem;
+  background-color: var(--primary-color);
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20rem;
+  align-items: center;
+  h1 {
+    font-size: 7rem;
+    position: relative;
+    top: 2.5rem;
+    right: 2rem;
+    color: white;
+  }
+  .header_icon {
+    font-size: 4rem;
+    color: white;
+  }
+  .active_nav_link {
+    text-decoration: underline;
+  }
+}
