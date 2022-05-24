@@ -1,6 +1,8 @@
 .header_container {
   height: 10rem;
-  background-color: var(--primary-color);
+  background: var(--first-background);
+  background: var(--second-background);
+  background: var(--third-background);
   width: 100vw;
   display: flex;
   justify-content: space-between;

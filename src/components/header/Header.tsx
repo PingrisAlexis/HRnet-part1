@@ -11,18 +11,17 @@ const Header:FunctionComponent = ():JSX.Element => {
 
      return (
          <header className={styles.header_container}>
-             {  pageName === '/employees' ?
+             {  pageName === '/employee-list' ?
                  <Link to='/' onClick={() => setPageName('/')}>
                      <FontAwesomeIcon  icon={faUserPlus} className={styles.header_icon} />
                  </Link>
                     :
-                 <Link to='/employees' onClick={() => setPageName('/employees')}>
+                 <Link to='/employee-list' onClick={() => setPageName('/employee-list')}>
                      <FontAwesomeIcon  icon={faUsers} className={styles.header_icon} />
                  </Link>
              }
-
              <Link to="/">
-                 <h1>HRNet</h1>
+                 <h1>HRnet</h1>
              </Link>
          </header>
      )
