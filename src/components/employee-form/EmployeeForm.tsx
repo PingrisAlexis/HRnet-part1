@@ -1,51 +1,72 @@
-import react, {FunctionComponent, useState} from 'react';
-import styles from './CreateEmployeeForm.module.scss'
+import react, {FormEvent, FunctionComponent, useState} from 'react';
+import styles from './EmployeeForm.module.scss'
+import {IEmployee} from "../../type.d";
+import {useDispatch} from "react-redux";
+import { Dispatch } from "redux"
+import {addEmployee} from "../../store/actionCreators";
 
-const CreateEmployeeForm:() => JSX.Element = () => {
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [birthDate, setBirthDate] = useState('')
-    const [startingDate, setStartingDate] = useState('')
-    const [street, setStreet] = useState('')
-    const [city, setCity] = useState('')
-    const [selectedState, setSelectedState] = useState('')
-    const [zipCode, setZipCode] = useState('')
-    const [selectedDepartment, setSelectedDepartment] = useState('')
+const EmployeeForm:FunctionComponent = () => {
+    const dispatch: Dispatch<any> = useDispatch()
 
-    const handleSubmit = () => {
-        // event.preventDefault();
-        console.log(firstName, lastName, birthDate, startingDate, street, city, selectedState, zipCode, selectedDepartment)
-    };
+    const [firstName, setFirstName] = useState<string>('')
+    const [lastName, setLastName] = useState<string>('')
+    const [birthDate, setBirthDate] = useState<string>('')
+    const [startingDate, setStartingDate] = useState<string>('')
+    const [street, setStreet] = useState<string>('')
+    const [city, setCity] = useState<string>('')
+    const [selectedState, setSelectedState] = useState<string>('')
+    const [zipCode, setZipCode] = useState<string>('')
+    const [selectedDepartment, setSelectedDepartment] = useState<string>('')
     
+    const NewEmployee: IEmployee = {
+        id : Math.floor((1 + Math.random()) * 0x100000000),
+        firstName,
+        lastName,
+        birthDate,
+        startingDate,
+        street,
+        city,
+        selectedState,
+        zipCode,
+        selectedDepartment
+    }
+    
+    const addNewEmployee= (e :FormEvent) => {
+        e.preventDefault()
+        console.log(NewEmployee)
+        dispatch(addEmployee(NewEmployee))
+        // saveEmployee(NewEmployee)
+
+    }
+
+
     return (
 
         <form className={styles.create_employee_form_container}
               action="#"
               id="create-employee"
-              onSubmit={handleSubmit}
+              onSubmit={addNewEmployee}
         >
             <label htmlFor="firstname">
                 <span>FIRSTNAME</span>
-                <input
-                    pattern="^[a-zA-Z]+$"
-                    minLength={2}
-                    maxLength={15}
-                    type="text"
-                    name="firstname"
-                    onChange={(e) => setFirstName(e.target.value)}
-                    />
+                <input pattern="^[a-zA-Z]+$"
+                       minLength={2}
+                       maxLength={15}
+                       type="text"
+                       name="firstname"
+                       onChange={(e) => setFirstName(e.target.value)}
+                />
             </label>
             <label htmlFor="last-name">
                 <span>LASTNAME</span>
-                <input
-                    pattern="^[a-zA-Z]+$"
-                    minLength={2}
-                    maxLength={15}
-                    type="text"
-                    id="last-name"
-                    name="lastName"
-                    onChange={(e) => setLastName(e.target.value)}
-                     />
+                <input pattern="^[a-zA-Z]+$"
+                       minLength={2}
+                       maxLength={15}
+                       type="text"
+                       id="last-name"
+                       name="lastName"
+                       onChange={(e) => setLastName(e.target.value)}
+                />
             </label>
             <label htmlFor="date-of-birth">
                 <span>BIRTH DATE</span>
@@ -65,7 +86,7 @@ const CreateEmployeeForm:() => JSX.Element = () => {
             </label>
             <label htmlFor="street">
                 <span>STREET</span>
-                <input id="street" 
+                <input id="street"
                        type="text"
                        name="street"
                        onChange={(e) => setStreet(e.target.value)}
@@ -166,8 +187,7 @@ const CreateEmployeeForm:() => JSX.Element = () => {
                 Save
             </button>
         </form>
-
     )
 }
 
-export default CreateEmployeeForm;
+export default EmployeeForm;
