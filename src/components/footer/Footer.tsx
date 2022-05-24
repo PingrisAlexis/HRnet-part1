@@ -4,7 +4,7 @@ import styles from './Footer.module.scss'
 const Footer:FunctionComponent = ():JSX.Element => {
     return (
         <footer className={styles.footer_container}>
-            <h3>Copyright, HRNet 2022</h3>
+            <h3>Copyright, HRnet 2022</h3>
         </footer>
     )
 }
