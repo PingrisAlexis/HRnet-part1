@@ -1,10 +1,11 @@
+import styles from './EmployeeList.module.scss'
+import {EmployeeTable} from "../../components";
 
-import react from "react";
-
-const EmployeeList = () => {
+const EmployeeList:() => JSX.Element = () => {
     return (
-        <main>
+        <main className={styles.employee_list_container}>
             <h2>Employee List</h2>
+            <EmployeeTable />
         </main>
     )
 }
