@@ -1,13 +1,12 @@
-import react from 'react';
 import styles from './CreateEmployee.module.scss'
 
-import {CreateEmployeeForm} from "../../components";
+import {EmployeeForm} from "../../components";
 
-const CreateEmployee = () => {
+const CreateEmployee:() => JSX.Element = () => {
     return (
         <main className={styles.create_employee_container}>
-            <h2>Create Employee</h2>
-            <CreateEmployeeForm />
+            <h2>Add an Employee</h2>
+            <EmployeeForm/>
         </main>
     )
 }
