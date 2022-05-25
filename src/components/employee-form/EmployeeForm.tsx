@@ -1,4 +1,4 @@
-import react, {FormEvent, FunctionComponent, useState} from 'react';
+import {FormEvent, FunctionComponent, useState} from 'react';
 import styles from './EmployeeForm.module.scss'
 import {IEmployee} from "../../type.d";
 import {useDispatch} from "react-redux";
@@ -35,13 +35,9 @@ const EmployeeForm:FunctionComponent = () => {
         e.preventDefault()
         console.log(NewEmployee)
         dispatch(addEmployee(NewEmployee))
-        // saveEmployee(NewEmployee)
-
     }
-
-
+    
     return (
-
         <form className={styles.create_employee_form_container}
               action="#"
               id="create-employee"
