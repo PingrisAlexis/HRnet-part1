@@ -7,12 +7,8 @@ body {
   --secondary-color: #020203;
   --tertiary-color: #FBFBFB;
   overflow: hidden;
-  --first-background: #00B4DB;  /* fallback for old browsers */
-  --second-background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);  /* Chrome 10-25, Safari 5.1-6 */
-  --third-background: linear-gradient(to right, #0083B0, #00B4DB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  --first-background: linear-gradient(to right, #0083B0, #00B4DB);  /* fallback for old browsers */
   background: var(--first-background);
-  background: var(--second-background);
-  background: var(--third-background);
 }
 
 code {
