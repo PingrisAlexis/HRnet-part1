@@ -4,7 +4,7 @@ import {EmployeeAction, EmployeeState, IEmployee} from "../type.d";
 const initialState: EmployeeState = {
     employees: [
         {
-            id: 1,
+            id: Math.floor((1 + Math.random()) * 0x100000000),
             firstName: "Wendy",
             lastName: "Bethel",
             birthDate: "August 28, 2001",
@@ -16,7 +16,7 @@ const initialState: EmployeeState = {
             selectedDepartment: "Engineering",
         },
         {
-            id: 2,
+            id: Math.floor((1 + Math.random()) * 0x100000000),
             firstName: "Russel",
             lastName: "Lee",
             birthDate: "April 29, 1989",
@@ -28,7 +28,7 @@ const initialState: EmployeeState = {
             selectedDepartment: "Sales",
         },
         {
-            id: 3,
+            id: Math.floor((1 + Math.random()) * 0x100000000),
             firstName: "Elizabeth",
             lastName: "Hill",
             birthDate: "October 27, 1960",
@@ -40,7 +40,7 @@ const initialState: EmployeeState = {
             selectedDepartment: "Human Resources",
         },
         {
-            id: 4,
+            id: Math.floor((1 + Math.random()) * 0x100000000),
             firstName: "James ",
             lastName: "Saucedo",
             birthDate: "March 9, 1952",
@@ -74,6 +74,7 @@ const reducer = (state: EmployeeState = initialState, action: EmployeeAction
                 ...state,
                 employees: state.employees.concat(newEmployee),
             }
+            
         case actionTypes.REMOVE_EMPLOYEE:
             const updatedEmployees: IEmployee[] = state.employees.filter(
                 employee => employee.id !== action.employee.id
@@ -83,7 +84,7 @@ const reducer = (state: EmployeeState = initialState, action: EmployeeAction
                 employees: updatedEmployees,
             }
     }
-    return state
+    return state;
 }
 
-export default reducer
+export default reducer;
