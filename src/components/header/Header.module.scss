@@ -1,23 +1,22 @@
 .header_container {
   height: 10rem;
   background: var(--first-background);
-  background: var(--second-background);
-  background: var(--third-background);
   width: 100vw;
   display: flex;
-  justify-content: space-between;
-  padding: 0 20rem;
+  justify-content: space-around;
   align-items: center;
-  h1 {
-    font-size: 7rem;
+  h1,
+  .header_icon {
     position: relative;
     top: 2.5rem;
-    right: 2rem;
     color: white;
   }
+
+  h1 {
+    font-size: 7rem;
+  }
   .header_icon {
-    font-size: 4rem;
-    color: white;
+    font-size: 5rem;
   }
   .active_nav_link {
     text-decoration: underline;

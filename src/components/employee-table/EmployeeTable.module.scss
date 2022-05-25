@@ -16,11 +16,15 @@
       color: var(--primary-color);
       font-weight: lighter;
     }
-    tr:nth-child(even) {
+    tbody > tr:nth-child(odd) {
       background: var(--first-background);
-      background: var(--second-background);
-      background: var(--third-background);
       color: white;
+    }
+    tbody > tr >td:last-child {
+      background-color: #e74c3c;
+      cursor: pointer;
+      color: white;
+      border: #e74c3c;
     }
     td { border: 0.1rem solid var(--primary-color); }
     tr:first-child td:first-child { border-top-left-radius: 0.5rem; }
