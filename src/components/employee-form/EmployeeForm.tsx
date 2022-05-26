@@ -1,29 +1,40 @@
-import {FormEvent, FunctionComponent, useState} from 'react';
-import styles from './EmployeeForm.module.scss'
-import {IEmployee} from "../../type.d";
-import {useDispatch} from "react-redux";
-import { Dispatch } from "redux"
-import {addEmployee} from "../../store/actionCreators";
+import { FormEvent, FunctionComponent, useState } from "react";
+import styles from "./EmployeeForm.module.scss";
+import { IEmployee } from "../../type.d";
+import { useDispatch } from "react-redux";
+import { Dispatch } from "redux";
+import { addEmployee } from "../../store/actionCreators";
+import DatePicker from "react-date-picker";
+import Select  from "react-select";
+import StyleConfig from "react-select";
+import {DEPARTMENTS_OPTIONS, US_STATES_OPTIONS} from "../../utils";
 
 const EmployeeForm:FunctionComponent = () => {
-    const dispatch: Dispatch<any> = useDispatch()
+    const dispatch: Dispatch<any> = useDispatch();
 
-    const [firstName, setFirstName] = useState<string>('')
-    const [lastName, setLastName] = useState<string>('')
-    const [birthDate, setBirthDate] = useState<string>('')
-    const [startingDate, setStartingDate] = useState<string>('')
-    const [street, setStreet] = useState<string>('')
-    const [city, setCity] = useState<string>('')
-    const [selectedState, setSelectedState] = useState<string>('')
-    const [zipCode, setZipCode] = useState<string>('')
-    const [selectedDepartment, setSelectedDepartment] = useState<string>('')
+    const [firstName, setFirstName] = useState<string>('');
+    const [lastName, setLastName] = useState<string>('');
+    const [birthDate, setBirthDate] = useState<any>(maxBirthade());
+    const [startDate, setStartDate] = useState<any>(new Date());
+    const [street, setStreet] = useState<string>('');
+    const [city, setCity] = useState<string>('');
+    const [selectedState, setSelectedState] = useState<any>('');
+    const [zipCode, setZipCode] = useState<string>('');
+    const [selectedDepartment, setSelectedDepartment] = useState<any>('');
+
+    function maxBirthade () {
+        const majorityAge  = new Date();
+        majorityAge.setDate(majorityAge.getDate() - 6570);
+
+        return majorityAge;
+    }
     
     const NewEmployee: IEmployee = {
         id : Math.floor((1 + Math.random()) * 0x100000000),
         firstName,
         lastName,
-        birthDate,
-        startingDate,
+        birthDate : birthDate.toLocaleDateString("en-US"),
+        startDate : startDate.toLocaleDateString("en-US"),
         street,
         city,
         selectedState,
@@ -31,12 +42,41 @@ const EmployeeForm:FunctionComponent = () => {
         selectedDepartment
     }
     
-    const addNewEmployee= (e :FormEvent) => {
+    const addNewEmployee = (e :FormEvent) => {
         e.preventDefault()
-        console.log(NewEmployee)
         dispatch(addEmployee(NewEmployee))
     }
-    
+
+    const handleStateChange = (value:any) => {
+        setSelectedState(value.value);
+    }
+    const handleDepartmentChange = (value:any) => {
+        setSelectedDepartment(value.value);
+    }
+    const customStyles = {
+        menu: (provided:any, state:any) => ({
+            ...provided,
+            width: state.selectProps.width,
+            borderRadius: '0.5rem',
+            // border: '1px solid #ff8b67',
+            padding: 20,
+            // border: "1px solid red",
+            // boxShadow: "1px solid red",
+            border: "red",
+            // boxShadow: state.isFocused ? "1px solid red" : "1px solid red",
+            boxShadow:"red",
+            "&:hover": {
+                border: "1px solid red",
+                // boxShadow: "0px 0px 6px red"
+            }
+
+            
+        }),
+        control: (base: any) => ({
+            ...base,
+            boxShadow: 'none'
+        }),
+    }
     return (
         <form className={styles.create_employee_form_container}
               action="#"
@@ -64,21 +104,35 @@ const EmployeeForm:FunctionComponent = () => {
                        onChange={(e) => setLastName(e.target.value)}
                 />
             </label>
-            <label htmlFor="date-of-birth">
+            <label htmlFor="date-of-birth"
+                   className={styles.datepicker}
+            >
                 <span>BIRTH DATE</span>
-                <input type="date"
-                       id="date-of-birth"
-                       name="birth"
-                       onChange={(e) => setBirthDate(e.target.value)}
+                <DatePicker
+                    className={styles.DatePicker}
+                    calendarClassName={styles.calendar}
+                    locale={"en-US"}
+                    format={"MM/dd/y"}
+                    clearIcon={null}
+                    value={birthDate}
+                    onChange={(date:Date) => setBirthDate(date)}
+                    maxDate={maxBirthade()}
                 />
             </label>
             <label htmlFor="starting-date">
-                <span>STARTING DATE</span>
-                <input type="date"
-                       id="starting-date"
-                       name="startingDate"
-                       onChange={(e) => setStartingDate(e.target.value)}
-                />
+                <span className={styles.aze}>STARTING DATE</span>
+                <div >
+                    <DatePicker
+                        className={styles.DatePicker}
+                        calendarClassName={styles.calendar}
+                        locale={"en-US"}
+                        format={"MM/dd/y"}
+                        clearIcon={null}
+                        value={startDate}
+                        onChange={(date:Date) => setStartDate(date)}
+                        maxDate={new Date()}
+                    />
+                </div>
             </label>
             <label htmlFor="street">
                 <span>STREET</span>
@@ -98,63 +152,13 @@ const EmployeeForm:FunctionComponent = () => {
             </label>
             <label htmlFor="state">
                 <span>STATE</span>
-                <select name="state" 
-                        id="state"
-                        onChange={(e) => setSelectedState(e.target.value)}
-                >
-                    <option>Choose a State</option>
-                    <option>Alabama</option>
-                    <option>Alaska</option>
-                    <option>Arizona</option>
-                    <option>Arkansas</option>
-                    <option>California</option>
-                    <option>Colorado</option>
-                    <option>Connecticut</option>
-                    <option>Delaware</option>
-                    <option>District Of Columbia</option>
-                    <option>Florida</option>
-                    <option>Georgia</option>
-                    <option>Hawaii</option>
-                    <option>Idaho</option>
-                    <option>Illinois</option>
-                    <option>Indiana</option>
-                    <option>Iowa</option>
-                    <option>Kansas</option>
-                    <option>Kentucky</option>
-                    <option>Louisiana</option>
-                    <option>Maine</option>
-                    <option>Maryland</option>
-                    <option>Massachusetts</option>
-                    <option>Michigan</option>
-                    <option>Minnesota</option>
-                    <option>Mississippi</option>
-                    <option>Missouri</option>
-                    <option>Montana</option>
-                    <option>Nebraska</option>
-                    <option>Nevada</option>
-                    <option>New Hampshire</option>
-                    <option>New Jersey</option>
-                    <option>New Mexico</option>
-                    <option>New York</option>
-                    <option>North Carolina</option>
-                    <option>North Dakota</option>
-                    <option>Ohio</option>
-                    <option>Oklahoma</option>
-                    <option>Oregon</option>
-                    <option>Pennsylvania</option>
-                    <option>Rhode Island</option>
-                    <option>South Carolina</option>
-                    <option>South Dakota</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Utah</option>
-                    <option>Vermont</option>
-                    <option>Virginia</option>
-                    <option>Washington</option>
-                    <option>West Virginia</option>
-                    <option>Wisconsin</option>
-                    <option>Wyoming</option>
-                </select>
+                <Select
+                    classNamePrefix={styles.react_select}
+                    className={styles.react_select_container}
+                    defaultValue={selectedState}
+                    onChange={handleStateChange}
+                    options={US_STATES_OPTIONS}
+                />
             </label>
             <label htmlFor="zip-code">
                 <span>ZIP CODE</span>
@@ -167,19 +171,17 @@ const EmployeeForm:FunctionComponent = () => {
             </label>
             <label htmlFor="department">
                 <span>DEPARTMENT</span>
-                <select name="department"
-                        id="department"
-                        onChange={(e) => setSelectedDepartment(e.target.value)}
-                >
-                    <option>Choose a department</option>
-                    <option>Sales</option>
-                    <option>Marketing</option>
-                    <option>Engineering</option>
-                    <option>Human Resources</option>
-                    <option>Legal</option>
-                </select>
+                <Select
+                    classNamePrefix={styles.react_select}
+                    className={styles.react_select_container}
+                    defaultValue={selectedDepartment}
+                    onChange={handleDepartmentChange}
+                    options={DEPARTMENTS_OPTIONS}
+                    styles={customStyles}
+                />
             </label>
-            <button type="submit">
+            <button type="submit"
+            >
                 Save
             </button>
         </form>
