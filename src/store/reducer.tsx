@@ -1,5 +1,5 @@
-import * as actionTypes from "./actionTypes"
-import {EmployeeAction, EmployeeState, IEmployee} from "../type.d";
+import * as actionTypes from "./actionTypes";
+import { EmployeeAction, EmployeeState, IEmployee } from "../type.d";
 
 const initialState: EmployeeState = {
     employees: [
@@ -7,11 +7,11 @@ const initialState: EmployeeState = {
             id: Math.floor((1 + Math.random()) * 0x100000000),
             firstName: "Wendy",
             lastName: "Bethel",
-            birthDate: "August 28, 2001",
-            startingDate: "Mai 2, 2020",
+            birthDate: "8/28/2001",
+            startDate: "5/2/2020",
             street: "1325 Dawson Drive",
             city: "Little Rock",
-            selectedState: "Arizona",
+            selectedState: "AZ",
             zipCode: "72212",
             selectedDepartment: "Engineering",
         },
@@ -19,11 +19,11 @@ const initialState: EmployeeState = {
             id: Math.floor((1 + Math.random()) * 0x100000000),
             firstName: "Russel",
             lastName: "Lee",
-            birthDate: "April 29, 1989",
-            startingDate: "January 5, 2018",
+            birthDate: "4/29/1989",
+            startDate: "1/5/2018",
             street: "3805 Victoria Street",
             city: "Palatine",
-            selectedState: "Illinois",
+            selectedState: "IL",
             zipCode: "60067",
             selectedDepartment: "Sales",
         },
@@ -31,11 +31,11 @@ const initialState: EmployeeState = {
             id: Math.floor((1 + Math.random()) * 0x100000000),
             firstName: "Elizabeth",
             lastName: "Hill",
-            birthDate: "October 27, 1960",
-            startingDate: "May 14, 2005",
+            birthDate: "10/27/1970",
+            startDate: "5/14/2015",
             street: "2387 Meadowbrook Road",
             city: "Manhattan Beach",
-            selectedState: "California",
+            selectedState: "CA",
             zipCode: "90266",
             selectedDepartment: "Human Resources",
         },
@@ -43,19 +43,18 @@ const initialState: EmployeeState = {
             id: Math.floor((1 + Math.random()) * 0x100000000),
             firstName: "James ",
             lastName: "Saucedo",
-            birthDate: "March 9, 1952",
-            startingDate: "December 17, 1999",
+            birthDate: "3/9/1982",
+            startDate: "12/16/2020",
             street: "3367 Cantebury Drive",
             city: "New York,",
-            selectedState: "New York",
+            selectedState: "NY",
             zipCode: "10019",
             selectedDepartment: "Marketing",
         },
     ],
 }
 
-const reducer = (state: EmployeeState = initialState, action: EmployeeAction
-): EmployeeState => {
+const reducer = (state: EmployeeState = initialState, action: EmployeeAction): EmployeeState => {
     switch (action.type) {
         case actionTypes.ADD_EMPLOYEE:
             const newEmployee: IEmployee = {
@@ -63,7 +62,7 @@ const reducer = (state: EmployeeState = initialState, action: EmployeeAction
                 firstName: action.employee.firstName,
                 lastName: action.employee.lastName,
                 birthDate: action.employee.birthDate,
-                startingDate: action.employee.startingDate,
+                startDate: action.employee.startDate,
                 street: action.employee.street,
                 city: action.employee.city,
                 selectedState: action.employee.selectedState,

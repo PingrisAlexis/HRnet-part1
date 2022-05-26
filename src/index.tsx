@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 import ReactDOM from 'react-dom/client';
-import './index.scss';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { createStore, applyMiddleware, Store } from "redux"
-import { Provider } from "react-redux"
-import thunk from "redux-thunk"
-import {DispatchType, EmployeeAction, EmployeeState} from "./type.d";
+import "./index.scss";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { createStore, applyMiddleware, Store } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import { DispatchType, EmployeeAction, EmployeeState } from "./type.d";
 import reducer from "./store/reducer";
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const store: Store<EmployeeState, EmployeeAction> & {
     dispatch: DispatchType

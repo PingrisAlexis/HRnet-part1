@@ -1,5 +1,5 @@
-import React, {FunctionComponent} from 'react';
-import styles from './Footer.module.scss'
+import React, { FunctionComponent } from "react";
+import styles from "./Footer.module.scss";
 
 const Footer:FunctionComponent = ():JSX.Element => {
     return (

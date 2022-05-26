@@ -1,5 +1,5 @@
-import * as actionTypes from "./actionTypes"
-import {EmployeeAction, IEmployee} from "../type.d";
+import * as actionTypes from "./actionTypes";
+import { EmployeeAction, IEmployee } from "../type.d";
 
 export function addEmployee(employee: IEmployee) {
     const action: EmployeeAction = {

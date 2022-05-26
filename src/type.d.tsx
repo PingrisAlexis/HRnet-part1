@@ -3,7 +3,7 @@ export interface IEmployee {
     firstName: string
     lastName: string
     birthDate: string
-    startingDate: string
+    startDate: string
     street: string
     city: string
     selectedState: string

@@ -1,15 +1,16 @@
 import React from "react";
 import styles from "./EmployeeTable.module.scss";
-import {FunctionComponent} from "react";
-import {EmployeeState, IEmployee} from "../../type.d";
-import {shallowEqual, useSelector, useDispatch} from "react-redux";
+import { FunctionComponent } from "react";
+import { EmployeeState, IEmployee } from "../../type.d";
+import { shallowEqual, useSelector, useDispatch } from "react-redux";
 import { Dispatch } from "redux";
-import {faTrash} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {removeEmployee} from "../../store/actionCreators";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { removeEmployee } from "../../store/actionCreators";
 
 const EmployeeTable:FunctionComponent = ():JSX.Element => {
     const dispatch: Dispatch<any> = useDispatch()
+    
     const employees: readonly IEmployee[] = useSelector(
         (state: EmployeeState) => state.employees,
         shallowEqual
@@ -18,7 +19,6 @@ const EmployeeTable:FunctionComponent = ():JSX.Element => {
     const deleteEmployee = (employee: IEmployee) => {
         dispatch(removeEmployee(employee))
     }
-
 
     return (
         <div  className={styles.employee_table_container}>
@@ -44,7 +44,7 @@ const EmployeeTable:FunctionComponent = ():JSX.Element => {
                         <td>{employee.firstName}</td>
                         <td>{employee.lastName}</td>
                         <td>{employee.birthDate}</td>
-                        <td>{employee.startingDate}</td>
+                        <td>{employee.startDate}</td>
                         <td>{employee.street}</td>
                         <td>{employee.city}</td>
                         <td>{employee.selectedState}</td>
