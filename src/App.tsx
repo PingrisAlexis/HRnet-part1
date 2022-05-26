@@ -1,5 +1,5 @@
-import React from 'react';
-import { Header, Footer } from './components';
+import React from "react";
+import { Header, Footer } from "./components";
 import { CreateEmployee, EmployeeList } from "./views";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
