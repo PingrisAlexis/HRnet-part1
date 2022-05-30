@@ -1,4 +1,4 @@
-import { FormEvent, FunctionComponent, useState } from "react";
+import {FormEvent, FunctionComponent, useRef, useState} from "react";
 import styles from "./EmployeeForm.module.scss";
 import { IEmployee } from "../../type.d";
 import { useDispatch } from "react-redux";
@@ -6,10 +6,11 @@ import { Dispatch } from "redux";
 import { addEmployee } from "../../store/actionCreators";
 import DatePicker from "react-date-picker";
 import Select  from "react-select";
-import StyleConfig from "react-select";
-import {DEPARTMENTS_OPTIONS, US_STATES_OPTIONS} from "../../utils";
+import {customStylesReactSelect, DEPARTMENTS_SELECT_OPTIONS, US_STATES_SELECT_OPTIONS} from "../../utils";
 
 const EmployeeForm:FunctionComponent = () => {
+
+
     const dispatch: Dispatch<any> = useDispatch();
 
     const [firstName, setFirstName] = useState<string>('');
@@ -22,7 +23,7 @@ const EmployeeForm:FunctionComponent = () => {
     const [zipCode, setZipCode] = useState<string>('');
     const [selectedDepartment, setSelectedDepartment] = useState<any>('');
 
-    function maxBirthade () {
+    function maxBirthade() {
         const majorityAge  = new Date();
         majorityAge.setDate(majorityAge.getDate() - 6570);
 
@@ -53,30 +54,7 @@ const EmployeeForm:FunctionComponent = () => {
     const handleDepartmentChange = (value:any) => {
         setSelectedDepartment(value.value);
     }
-    const customStyles = {
-        menu: (provided:any, state:any) => ({
-            ...provided,
-            width: state.selectProps.width,
-            borderRadius: '0.5rem',
-            // border: '1px solid #ff8b67',
-            padding: 20,
-            // border: "1px solid red",
-            // boxShadow: "1px solid red",
-            border: "red",
-            // boxShadow: state.isFocused ? "1px solid red" : "1px solid red",
-            boxShadow:"red",
-            "&:hover": {
-                border: "1px solid red",
-                // boxShadow: "0px 0px 6px red"
-            }
 
-            
-        }),
-        control: (base: any) => ({
-            ...base,
-            boxShadow: 'none'
-        }),
-    }
     return (
         <form className={styles.create_employee_form_container}
               action="#"
@@ -117,6 +95,7 @@ const EmployeeForm:FunctionComponent = () => {
                     value={birthDate}
                     onChange={(date:Date) => setBirthDate(date)}
                     maxDate={maxBirthade()}
+
                 />
             </label>
             <label htmlFor="starting-date">
@@ -133,6 +112,17 @@ const EmployeeForm:FunctionComponent = () => {
                         maxDate={new Date()}
                     />
                 </div>
+            </label>
+            <label htmlFor="department">
+                <span>DEPARTMENT</span>
+                <Select
+                    classNamePrefix={styles.react_select}
+                    className={styles.react_select_container}
+                    defaultValue={selectedDepartment}
+                    onChange={handleDepartmentChange}
+                    options={DEPARTMENTS_SELECT_OPTIONS}
+                    styles={customStylesReactSelect}
+                />
             </label>
             <label htmlFor="street">
                 <span>STREET</span>
@@ -157,7 +147,8 @@ const EmployeeForm:FunctionComponent = () => {
                     className={styles.react_select_container}
                     defaultValue={selectedState}
                     onChange={handleStateChange}
-                    options={US_STATES_OPTIONS}
+                    options={US_STATES_SELECT_OPTIONS}
+                    styles={customStylesReactSelect}
                 />
             </label>
             <label htmlFor="zip-code">
@@ -167,17 +158,6 @@ const EmployeeForm:FunctionComponent = () => {
                        type="text"
                        pattern="(^\d{5}$)|(^\d{9}$)|(^\d{5}-\d{4}$)"
                        onChange={(e) => setZipCode(e.target.value)}
-                />
-            </label>
-            <label htmlFor="department">
-                <span>DEPARTMENT</span>
-                <Select
-                    classNamePrefix={styles.react_select}
-                    className={styles.react_select_container}
-                    defaultValue={selectedDepartment}
-                    onChange={handleDepartmentChange}
-                    options={DEPARTMENTS_OPTIONS}
-                    styles={customStyles}
                 />
             </label>
             <button type="submit"
