@@ -70,10 +70,15 @@
     }
     .calendar {
       position: relative;
+      top: 0.7rem;
       right: 2.5rem;
       width: 25rem;
       border: 0.1rem solid var(--primary-color);
       border-radius: 0.5rem;
+      overflow: hidden;
+      >button {
+        color: #e74c3c;
+      }
     }
     span {
       color: black;
@@ -86,18 +91,17 @@
     margin-bottom: 1rem;
     width: 100%;
     border-style: none;
+    color: black !important;
     input {
       border-style: hidden;
+      cursor: pointer;
     }
-    >div {
+    &>div {
       border-style: none;
     }
-
      span {
        color: black;
        background-color: white;
      }
   }
 }
-
-
