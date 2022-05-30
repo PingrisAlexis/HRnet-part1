@@ -7,10 +7,12 @@ import { Dispatch } from "redux";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { removeEmployee } from "../../store/actionCreators";
+import Table from 'rc-table';
+// import {columns} from "../../utils";
 
 const EmployeeTable:FunctionComponent = ():JSX.Element => {
-    const dispatch: Dispatch<any> = useDispatch()
-    
+    const dispatch: Dispatch<any> = useDispatch();
+
     const employees: readonly IEmployee[] = useSelector(
         (state: EmployeeState) => state.employees,
         shallowEqual
@@ -20,43 +22,63 @@ const EmployeeTable:FunctionComponent = ():JSX.Element => {
         dispatch(removeEmployee(employee))
     }
 
+    const columns  = [
+        {
+            title: 'FIRSTNAME',
+            dataIndex: 'firstName',
+            key: 'firstName',
+        },
+        {
+            title: 'LASTNAME',
+            dataIndex: 'lastName',
+            key: 'lastName',
+        },
+        {
+            title: 'BIRTHDATE',
+            dataIndex: 'birthDate',
+            key: 'birthDate',
+        },
+        {
+            title: 'STARTDATE',
+            dataIndex: 'startDate',
+            key: 'startDate',
+        },
+        {
+            title: 'STREET',
+            dataIndex: 'street',
+            key: 'street',
+        },
+        {
+            title: 'CITY',
+            dataIndex: 'city',
+            key: 'city',
+        },
+        {
+            title: 'STATE',
+            dataIndex: 'selectedState',
+            key: 'selectedState',
+        },
+        {
+            title: 'ZIP CODE',
+            dataIndex: 'zipCode',
+            key: 'zipCode',
+        },
+        {
+            title: 'DEPARTMENT',
+            dataIndex: 'selectedDepartment',
+            key: 'selectedDepartment',
+        },
+        {
+            title: false,
+            dataIndex: '',
+            key: 'operations',
+            render: (employee: IEmployee) => <FontAwesomeIcon  icon={faTrash} onClick={() => deleteEmployee(employee)}/>
+        },
+    ];
+
     return (
         <div  className={styles.employee_table_container}>
-            <table>
-                <thead>
-                <tr>
-                    <th>FIRSTNAME</th>
-                    <th>LASTNAME</th>
-                    <th>BIRTHDATE</th>
-                    <th>STARTING DATE</th>
-                    <th>STREET</th>
-                    <th>CITY</th>
-                    <th>STATE</th>
-                    <th>ZIP CODE</th>
-                    <th>DEPARTMENT</th>
-                </tr>
-                </thead>
-                <tbody>
-                {employees.map((employee: IEmployee) => (
-                    <tr
-                    key={employee.id}
-                    >
-                        <td>{employee.firstName}</td>
-                        <td>{employee.lastName}</td>
-                        <td>{employee.birthDate}</td>
-                        <td>{employee.startDate}</td>
-                        <td>{employee.street}</td>
-                        <td>{employee.city}</td>
-                        <td>{employee.selectedState}</td>
-                        <td>{employee.zipCode}</td>
-                        <td>{employee.selectedDepartment}</td>
-                        <td onClick={() => deleteEmployee(employee)}>
-                            <FontAwesomeIcon  icon={faTrash} />
-                        </td>
-                    </tr>
-                    ))}
-                </tbody>
-            </table>
+            <Table columns={columns}  data={employees} rowKey="key"/>
         </div>
     )
 }
