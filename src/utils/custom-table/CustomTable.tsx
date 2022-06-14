@@ -1,59 +1,66 @@
-import {IEmployee} from "../../type.d";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTrash} from "@fortawesome/free-solid-svg-icons";
 import React from "react";
-import {removeEmployee} from "../../store/actionCreators";
+import { IEmployee } from "../../type.d";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
-export const columns  = [
+export const columns:any= (deleteEmployee: Function) =>  [
     {
-        title: 'FIRSTNAME',
-        dataIndex: 'firstName',
         key: 'firstName',
+        name: 'FIRSTNAME',
+        selector: (row: any) => row.firstName,
+        sortable: true,
     },
     {
-        title: 'LASTNAME',
-        dataIndex: 'lastName',
         key: 'lastName',
+        name: 'LASTNAME',
+        selector: (row: any) => row.lastName,
+        sortable: true,
     },
     {
-        title: 'BIRTHDATE',
-        dataIndex: 'birthDate',
         key: 'birthDate',
+        name: 'BIRTH DATE',
+        selector: (row: any) => row.birthDate,
+        sortable: true,
     },
     {
-        title: 'STARTDATE',
-        dataIndex: 'startDate',
         key: 'startDate',
+        name: 'START DATE',
+        selector: (row: any) => row.startDate,
+        sortable: true,
     },
     {
-        title: 'STREET',
-        dataIndex: 'street',
-        key: 'street',
-    },
-    {
-        title: 'CITY',
-        dataIndex: 'city',
-        key: 'city',
-    },
-    {
-        title: 'STATE',
-        dataIndex: 'selectedState',
-        key: 'selectedState',
-    },
-    {
-        title: 'ZIP CODE',
-        dataIndex: 'zipCode',
-        key: 'zipCode',
-    },
-    {
-        title: 'DEPARTMENT',
-        dataIndex: 'selectedDepartment',
         key: 'selectedDepartment',
+        name: 'DEPARTMENT',
+        selector: (row: any) => row.selectedDepartment,
+        sortable: true,
     },
     {
-        title: false,
-        dataIndex: '',
+        key: 'street',
+        name: 'STREET',
+        selector: (row: any) => row.street,
+        sortable: true,
+    },
+    {
+        key: 'city',
+        name: 'CITY',
+        selector: (row: any) => row.city,
+        sortable: true,
+    },
+    {
+        key: 'selectedState',
+        name: 'STATE',
+        selector: (row: any) => row.selectedState,
+        sortable: true,
+    },
+    {
+        key: 'zipCode',
+        name: 'ZIP CODE',
+        selector: (row: any) => row.zipCode,
+        sortable: true,
+    },
+    {
         key: 'operations',
-        // render: (employee: IEmployee) => <FontAwesomeIcon  icon={faTrash} onClick={() => deleteEmployee(employee)}/>
+        center: 'CENTER',
+        cell: (employee: IEmployee) => <FontAwesomeIcon key={employee.id} icon={faTrash} color="red"  cursor="pointer" onClick={() => deleteEmployee(employee)}/>,
     },
 ];
