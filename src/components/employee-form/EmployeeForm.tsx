@@ -1,39 +1,48 @@
-import {FormEvent, FunctionComponent, useRef, useState} from "react";
+import {FormEvent, FunctionComponent, useState} from "react";
+import sub from 'date-fns/sub'
 import styles from "./EmployeeForm.module.scss";
+import "../../utils/custom-modal/Modal.Module.css"
 import { IEmployee } from "../../type.d";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "redux";
 import { addEmployee } from "../../store/actionCreators";
 import DatePicker from "react-date-picker";
 import Select  from "react-select";
-import {customStylesReactSelect, DEPARTMENTS_SELECT_OPTIONS, US_STATES_SELECT_OPTIONS} from "../../utils";
+import { customStylesReactSelect, DEPARTMENTS_SELECT_OPTIONS, US_STATES_SELECT_OPTIONS } from "../../utils";
+// @ts-ignore
+import { Modal }  from "@pingrisalexis/react-modal";
 
 const EmployeeForm:FunctionComponent = () => {
-
-
     const dispatch: Dispatch<any> = useDispatch();
 
     const [firstName, setFirstName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
-    const [birthDate, setBirthDate] = useState<any>(maxBirthade());
+    const [birthDate, setBirthDate] = useState<any>(maxBirthDate());
     const [startDate, setStartDate] = useState<any>(new Date());
     const [street, setStreet] = useState<string>('');
     const [city, setCity] = useState<string>('');
     const [selectedState, setSelectedState] = useState<any>('');
     const [zipCode, setZipCode] = useState<string>('');
     const [selectedDepartment, setSelectedDepartment] = useState<any>('');
-
-    function maxBirthade() {
-        const majorityAge  = new Date();
-        majorityAge.setDate(majorityAge.getDate() - 6570);
-
-        return majorityAge;
-    }
     
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const toggle = () => setIsOpen(!isOpen);
+    const message = "Employee Created!";
+    
+    function maxBirthDate() {
+        const today = new Date()
+        return sub(today, { years: 18 })
+    }
+
+    function titleCase(str: string) {
+        return str.split(' ').map(item =>
+            item.charAt(0).toUpperCase() + item.slice(1).toLowerCase()).join(' ');
+    }
+
     const NewEmployee: IEmployee = {
         id : Math.floor((1 + Math.random()) * 0x100000000),
-        firstName,
-        lastName,
+        lastName : lastName.toUpperCase(),
+        firstName: titleCase(firstName),
         birthDate : birthDate.toLocaleDateString("en-US"),
         startDate : startDate.toLocaleDateString("en-US"),
         street,
@@ -46,6 +55,7 @@ const EmployeeForm:FunctionComponent = () => {
     const addNewEmployee = (e :FormEvent) => {
         e.preventDefault()
         dispatch(addEmployee(NewEmployee))
+        setIsOpen(true)
     }
 
     const handleStateChange = (value:any) => {
@@ -69,6 +79,7 @@ const EmployeeForm:FunctionComponent = () => {
                        type="text"
                        name="firstname"
                        onChange={(e) => setFirstName(e.target.value)}
+                       // required={true}
                 />
             </label>
             <label htmlFor="last-name">
@@ -82,6 +93,8 @@ const EmployeeForm:FunctionComponent = () => {
                        onChange={(e) => setLastName(e.target.value)}
                 />
             </label>
+
+
             <label htmlFor="date-of-birth"
                    className={styles.datepicker}
             >
@@ -94,12 +107,12 @@ const EmployeeForm:FunctionComponent = () => {
                     clearIcon={null}
                     value={birthDate}
                     onChange={(date:Date) => setBirthDate(date)}
-                    maxDate={maxBirthade()}
+                    maxDate={maxBirthDate()}
 
                 />
             </label>
             <label htmlFor="starting-date">
-                <span className={styles.aze}>STARTING DATE</span>
+                <span>START DATE</span>
                 <div >
                     <DatePicker
                         className={styles.DatePicker}
@@ -109,7 +122,6 @@ const EmployeeForm:FunctionComponent = () => {
                         clearIcon={null}
                         value={startDate}
                         onChange={(date:Date) => setStartDate(date)}
-                        maxDate={new Date()}
                     />
                 </div>
             </label>
@@ -164,7 +176,11 @@ const EmployeeForm:FunctionComponent = () => {
             >
                 Save
             </button>
+            { isOpen ? <Modal isOpen={isOpen} hide={toggle} content={message}/>
+                : null
+            }
         </form>
+
     )
 }
 
