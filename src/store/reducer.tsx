@@ -6,7 +6,7 @@ const initialState: EmployeeState = {
         {
             id: Math.floor((1 + Math.random()) * 0x100000000),
             firstName: "Wendy",
-            lastName: "Bethel",
+            lastName: "BETHEL",
             birthDate: "8/28/2001",
             startDate: "5/2/2020",
             street: "1325 Dawson Drive",
@@ -18,7 +18,7 @@ const initialState: EmployeeState = {
         {
             id: Math.floor((1 + Math.random()) * 0x100000000),
             firstName: "Russel",
-            lastName: "Lee",
+            lastName: "LEE",
             birthDate: "4/29/1989",
             startDate: "1/5/2018",
             street: "3805 Victoria Street",
@@ -30,7 +30,7 @@ const initialState: EmployeeState = {
         {
             id: Math.floor((1 + Math.random()) * 0x100000000),
             firstName: "Elizabeth",
-            lastName: "Hill",
+            lastName: "HILL",
             birthDate: "10/27/1970",
             startDate: "5/14/2015",
             street: "2387 Meadowbrook Road",
@@ -42,7 +42,7 @@ const initialState: EmployeeState = {
         {
             id: Math.floor((1 + Math.random()) * 0x100000000),
             firstName: "James ",
-            lastName: "Saucedo",
+            lastName: "SAUCEDO",
             birthDate: "3/9/1982",
             startDate: "12/16/2020",
             street: "3367 Cantebury Drive",
