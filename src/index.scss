@@ -1,6 +1,7 @@
 body {
   margin: 0;
-  font-family: "Montserrat-light", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--font-family);
+  --font-family: "Montserrat-light", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --primary-color: #00B4DB;
@@ -9,6 +10,7 @@ body {
   overflow: hidden;
   --first-background: linear-gradient(to right, #0083B0, #00B4DB);  /* fallback for old browsers */
   background: var(--first-background);
+
 }
 
 code {
