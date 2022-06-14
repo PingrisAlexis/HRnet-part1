@@ -1,0 +1,5 @@
+body {
+    --rm-close-button-color: var(--primary-color);
+    --rm-font-family:var(--font-family);
+    --rm-content-font-size: 2rem;
+}
