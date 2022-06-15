@@ -61,6 +61,7 @@ const EmployeeForm:FunctionComponent = () => {
     const handleStateChange = (value:any) => {
         setSelectedState(value.value);
     }
+    
     const handleDepartmentChange = (value:any) => {
         setSelectedDepartment(value.value);
     }
@@ -93,8 +94,6 @@ const EmployeeForm:FunctionComponent = () => {
                        onChange={(e) => setLastName(e.target.value)}
                 />
             </label>
-
-
             <label htmlFor="date-of-birth"
                    className={styles.datepicker}
             >
@@ -180,7 +179,6 @@ const EmployeeForm:FunctionComponent = () => {
                 : null
             }
         </form>
-
     )
 }
 
