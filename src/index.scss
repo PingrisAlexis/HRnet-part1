@@ -4,11 +4,11 @@ body {
   --font-family: "Montserrat-light", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --primary-color: #00B4DB;
+  --primary-color: #0083B0;
   --secondary-color: #020203;
   --tertiary-color: #FBFBFB;
   overflow: hidden;
-  --first-background: linear-gradient(to right, #0083B0, #00B4DB);  /* fallback for old browsers */
+  --first-background: #0083B0;;  /* fallback for old browsers */
   background: var(--first-background);
 
 }
