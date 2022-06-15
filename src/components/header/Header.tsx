@@ -7,11 +7,11 @@ import { faUsers } from "@fortawesome/free-solid-svg-icons";
 const Header:FunctionComponent = ():JSX.Element => {
     return (
         <header className={styles.header_container}>
-                <Link to='/'>
+                <Link to='/'  title="Home">
                     <h1>HRnet</h1>
                 </Link>
-                <Link to='/employee-list' aria-labelledby="employee list icon" >
-                    <FontAwesomeIcon  icon={faUsers} className={styles.header_icon} />
+                <Link to='/employee-list' title="employee list">
+                    <FontAwesomeIcon  icon={faUsers} className={styles.header_icon}/>
                 </Link>
          </header>
      )
