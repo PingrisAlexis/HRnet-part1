@@ -10,8 +10,8 @@ const Header:FunctionComponent = ():JSX.Element => {
                 <Link to='/'>
                     <h1>HRnet</h1>
                 </Link>
-                <Link to='/employee-list'>
-                    <FontAwesomeIcon  icon={faUsers} className={styles.header_icon} aria-labelledby="employee list icon" />
+                <Link to='/employee-list' aria-labelledby="employee list icon" >
+                    <FontAwesomeIcon  icon={faUsers} className={styles.header_icon} />
                 </Link>
          </header>
      )
