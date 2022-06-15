@@ -12,7 +12,7 @@ const Header:FunctionComponent = ():JSX.Element => {
                     <h1>HRnet</h1>
                 </Link>
                 <Link to='/employee-list'>
-                    <FontAwesomeIcon  icon={faUsers} className={styles.header_icon} />
+                    <FontAwesomeIcon  icon={faUsers} className={styles.header_icon}/>
                 </Link>
          </header>
      )
