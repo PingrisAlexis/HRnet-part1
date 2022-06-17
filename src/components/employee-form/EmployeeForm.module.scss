@@ -29,9 +29,8 @@
      input[type="text"],
      select {
        width: 100%;
-
        font-size: 1.6rem;
-       font-family: "Montserrat", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;;
+       font-family: "Montserrat", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
      }
      input[type="date"],
      input[type="text"] {
@@ -52,15 +51,8 @@
     cursor: pointer;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease 0s;
-    margin-top: 3rem;
-    &:hover {
-      background-color: #00B4DB;
-      box-shadow: 0 15px 20px rgba(55, 150, 200, 0.5);
-      color: #fff;
-      transform: translateY(-7px);
-    }
+    margin: 3rem;
   }
-
   .DatePicker {
     width: 100%;
     position: relative;

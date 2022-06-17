@@ -6,7 +6,7 @@ import { shallowEqual, useSelector, useDispatch } from "react-redux";
 import { Dispatch } from "redux";
 import { removeEmployee } from "../../store/actionCreators";
 import { columns } from "../../utils";
-import DataTable from 'react-data-table-component';
+import DataTable from "react-data-table-component";
 
 const EmployeeTable:FunctionComponent = ():JSX.Element => {
     const dispatch: Dispatch<any> = useDispatch();
@@ -19,6 +19,7 @@ const EmployeeTable:FunctionComponent = ():JSX.Element => {
     const deleteEmployee = (employee: IEmployee) => {
         dispatch(removeEmployee(employee))
     }
+    
     const customStyles = {
         headCells: {
             style: {
@@ -28,10 +29,8 @@ const EmployeeTable:FunctionComponent = ():JSX.Element => {
                 fontSize: "1.5rem"
             },
         },
-
     };
-    /*@ts-ignore*/
-
+    
     return (
         <div  className={styles.employee_table_container}>
             <DataTable

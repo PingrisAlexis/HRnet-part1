@@ -8,14 +8,13 @@ export const customStylesReactSelect = {
     menu: (provided:any) => ({
         ...provided,
         position: "relative",
-        bottom: "0.6rem",
+        bottom: "0.7rem",
         right: "0.1rem",
         border: "1px solid var(--primary-color) !important",
         boxShadow: "none",
         borderRadius: '0.5rem',
         width: 200,
         color: 'black',
-
     }),
     singleValue: (provided:any) => ({
         ...provided,
@@ -25,7 +24,7 @@ export const customStylesReactSelect = {
         ...provided,
         paddingTop: 0,
         paddingBottom: 0,
-        height: 181,
+        height: 153,
         "::-webkit-scrollbar": {
             width: "9px",
             borderRadius: "0.5rem",

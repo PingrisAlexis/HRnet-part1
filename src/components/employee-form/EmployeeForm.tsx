@@ -80,7 +80,6 @@ const EmployeeForm:FunctionComponent = () => {
                        type="text"
                        name="firstname"
                        onChange={(e) => setFirstName(e.target.value)}
-                       // required={true}
                 />
             </label>
             <label htmlFor="last-name">
@@ -107,7 +106,6 @@ const EmployeeForm:FunctionComponent = () => {
                     value={birthDate}
                     onChange={(date:Date) => setBirthDate(date)}
                     maxDate={maxBirthDate()}
-
                 />
             </label>
             <label htmlFor="starting-date">
