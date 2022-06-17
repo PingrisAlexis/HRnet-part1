@@ -4,7 +4,11 @@
 
 ### Specifications:
 
-- Test functionality and verify performance with LightHouse for the application in jQuery and React
+- Convert the whole HRNet project to React.
+
+- Convert one of the four current jQuery plugins to React. Replace the remaining 3 jQuery plugins with React components.
+
+- Perform Lighthouse performance tests comparing the old and new application.
 
 ### Elements provided:
 
@@ -43,14 +47,3 @@
 - `npm start`
 
 - The server listens on the port 3000: http://localhost:3000
- 
-
-
-optimiser la table  (desinstaller / clean / finir)
-
-
-rapport lighthouse json + pdf
-
-
-
-
