@@ -19,16 +19,17 @@ const EmployeeForm:FunctionComponent = () => {
     const [lastName, setLastName] = useState<string>('');
     const [birthDate, setBirthDate] = useState<any>(maxBirthDate());
     const [startDate, setStartDate] = useState<any>(new Date());
+    const [selectedDepartment, setSelectedDepartment] = useState<string>('Sales');
     const [street, setStreet] = useState<string>('');
     const [city, setCity] = useState<string>('');
-    const [selectedState, setSelectedState] = useState<any>('');
+    const [selectedState, setSelectedState] = useState<string>('AL');
     const [zipCode, setZipCode] = useState<string>('');
-    const [selectedDepartment, setSelectedDepartment] = useState<any>('');
-    
+
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const toggle = () => setIsOpen(!isOpen);
     const message = "Employee Created!";
-    
+    console.log(typeof new Date())
+
     function maxBirthDate() {
         const today = new Date()
         return sub(today, { years: 18 })
@@ -36,7 +37,7 @@ const EmployeeForm:FunctionComponent = () => {
 
     function titleCase(str: string) {
         return str.split(' ').map(item =>
-            item.charAt(0).toUpperCase() + item.slice(1).toLowerCase()).join(' ');
+            item.charAt(0).toUpperCase() + item.slice(1).toLowerCase()).join('');
     }
 
     const NewEmployee: IEmployee = {
@@ -52,18 +53,19 @@ const EmployeeForm:FunctionComponent = () => {
         selectedDepartment
     }
     
-    const addNewEmployee = (e :FormEvent) => {
+    const addNewEmployee = (e: FormEvent) => {
         e.preventDefault()
         dispatch(addEmployee(NewEmployee))
         setIsOpen(true)
     }
 
-    const handleStateChange = (value:any) => {
-        setSelectedState(value.value);
+    const handleStateChange = (e: any ) => {
+        setSelectedState(e.value);
+        // console.log(typeof e)
     }
     
-    const handleDepartmentChange = (value:any) => {
-        setSelectedDepartment(value.value);
+    const handleDepartmentChange = (e: any) => {
+        setSelectedDepartment(e.value);
     }
 
     return (
@@ -80,6 +82,7 @@ const EmployeeForm:FunctionComponent = () => {
                        type="text"
                        name="firstname"
                        onChange={(e) => setFirstName(e.target.value)}
+                       required={true}
                 />
             </label>
             <label htmlFor="last-name">
@@ -91,6 +94,7 @@ const EmployeeForm:FunctionComponent = () => {
                        id="last-name"
                        name="lastName"
                        onChange={(e) => setLastName(e.target.value)}
+                       required={true}
                 />
             </label>
             <label htmlFor="date-of-birth"
@@ -127,7 +131,7 @@ const EmployeeForm:FunctionComponent = () => {
                 <Select
                     classNamePrefix={styles.react_select}
                     className={styles.react_select_container}
-                    defaultValue={selectedDepartment}
+                    defaultValue={DEPARTMENTS_SELECT_OPTIONS[0]}
                     onChange={handleDepartmentChange}
                     options={DEPARTMENTS_SELECT_OPTIONS}
                     styles={customStylesReactSelect}
@@ -136,17 +140,22 @@ const EmployeeForm:FunctionComponent = () => {
             <label htmlFor="street">
                 <span>STREET</span>
                 <input id="street"
+                       minLength={5}
                        type="text"
                        name="street"
                        onChange={(e) => setStreet(e.target.value)}
+                       required={true}
                 />
             </label>
             <label htmlFor="city">
                 <span>CITY</span>
                 <input id="city"
-                       type="text" 
+                       type="text"
+                       pattern="^[a-zA-Z]+$"
+                       minLength={2}
                        name="city"
                        onChange={(e) => setCity(e.target.value)}
+                       required={true}
                 />
             </label>
             <label htmlFor="state">
@@ -154,7 +163,7 @@ const EmployeeForm:FunctionComponent = () => {
                 <Select
                     classNamePrefix={styles.react_select}
                     className={styles.react_select_container}
-                    defaultValue={selectedState}
+                    defaultValue={US_STATES_SELECT_OPTIONS[0]}
                     onChange={handleStateChange}
                     options={US_STATES_SELECT_OPTIONS}
                     styles={customStylesReactSelect}
@@ -167,6 +176,7 @@ const EmployeeForm:FunctionComponent = () => {
                        type="text"
                        pattern="(^\d{5}$)|(^\d{9}$)|(^\d{5}-\d{4}$)"
                        onChange={(e) => setZipCode(e.target.value)}
+                       required={true}
                 />
             </label>
             <button type="submit"
