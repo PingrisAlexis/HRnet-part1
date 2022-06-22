@@ -28,16 +28,20 @@ const EmployeeForm:FunctionComponent = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const toggle = () => setIsOpen(!isOpen);
     const message = "Employee Created!";
-    console.log(typeof new Date())
-
+    
     function maxBirthDate() {
         const today = new Date()
         return sub(today, { years: 18 })
     }
 
     function titleCase(str: string) {
-        return str.split(' ').map(item =>
-            item.charAt(0).toUpperCase() + item.slice(1).toLowerCase()).join('');
+        let pieces = str.split(" ");
+        for ( let i = 0; i < pieces.length; i++ )
+        {
+            let j = pieces[i].charAt(0).toUpperCase();
+            pieces[i] = j + pieces[i].substr(1).toLowerCase();
+        }
+        return pieces.join(" ");
     }
 
     const NewEmployee: IEmployee = {
@@ -47,7 +51,7 @@ const EmployeeForm:FunctionComponent = () => {
         birthDate : birthDate.toLocaleDateString("en-US"),
         startDate : startDate.toLocaleDateString("en-US"),
         street,
-        city,
+        city: titleCase(city),
         selectedState,
         zipCode,
         selectedDepartment
@@ -61,7 +65,6 @@ const EmployeeForm:FunctionComponent = () => {
 
     const handleStateChange = (e: any ) => {
         setSelectedState(e.value);
-        // console.log(typeof e)
     }
     
     const handleDepartmentChange = (e: any) => {
@@ -151,7 +154,7 @@ const EmployeeForm:FunctionComponent = () => {
                 <span>CITY</span>
                 <input id="city"
                        type="text"
-                       pattern="^[a-zA-Z]+$"
+                       pattern="^[a-zA-Z_ ]+$"
                        minLength={2}
                        name="city"
                        onChange={(e) => setCity(e.target.value)}
