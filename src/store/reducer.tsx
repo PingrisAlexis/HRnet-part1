@@ -46,7 +46,7 @@ const initialState: EmployeeState = {
             birthDate: "3/9/1982",
             startDate: "12/16/2020",
             street: "3367 Cantebury Drive",
-            city: "New York,",
+            city: "New York",
             selectedState: "NY",
             zipCode: "10019",
             selectedDepartment: "Marketing",
