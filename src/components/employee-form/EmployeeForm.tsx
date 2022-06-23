@@ -50,7 +50,7 @@ const EmployeeForm:FunctionComponent = () => {
         firstName: titleCase(firstName),
         birthDate : birthDate.toLocaleDateString("en-US"),
         startDate : startDate.toLocaleDateString("en-US"),
-        street,
+        street: titleCase(street),
         city: titleCase(city),
         selectedState,
         zipCode,
