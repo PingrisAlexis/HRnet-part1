@@ -1,5 +1,4 @@
 import styles from './CreateEmployee.module.scss'
-
 import {EmployeeForm} from "../../components";
 
 const CreateEmployee:() => JSX.Element = () => {
