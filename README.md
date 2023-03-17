@@ -1,6 +1,6 @@
-# PingrisAlexis_14_13052022
+# Project 9/9 - Part 1/2 - Front End Developer Path
 
-## Project 14 Front-End OpenClassrooms - Switch a jQuery library to React.
+## Switch a jQuery library to React.
 
 ### Specifications:
 
